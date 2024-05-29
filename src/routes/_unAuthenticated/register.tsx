@@ -4,6 +4,7 @@ import { TextField, Button, Container, Typography, CircularProgress, MenuItem, B
 import { useForm } from 'react-hook-form';
 import { z, ZodError } from 'zod';
 import { AuthAPI } from '../../api/AuthAPI';
+import { ApiErrorResponse } from '../../api/configs/axiosConfigs';
 
 export const Route = createFileRoute('/_unAuthenticated/register')({
 	component: Register
@@ -67,7 +68,7 @@ function Register() {
 
 	const onSubmit = (data: any) => {
 		schema.parse(data)
-		AuthAPI.RegisterUser(data, false)
+		AuthAPI.RegisterUser(data, true)
 			.then((result) => {
 				reset();
 			})
@@ -77,7 +78,7 @@ function Register() {
 						setError(err.path.join('.'), { message: err.message });
 					});
 				} else {
-					console.error('Error registering user:', error);
+					console.log(error.response.message)
 				}
 			});
 	};

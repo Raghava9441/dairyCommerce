@@ -27,7 +27,7 @@ function Login() {
 
 	const onSubmit = (data: any) => {
 		schema.parse(data)
-		AuthAPI.Login(data, false)
+		AuthAPI.Login(data, true)
 			.then((result) => {
 				LocalStorage.set("current-user", result.data)
 				reset();
@@ -45,7 +45,7 @@ function Login() {
 						setError(err.path.join('.'), { message: err.message });
 					});
 				} else {
-					console.error('Error registering user:', error);
+					console.log('Error registering user:', error.response.data.message);
 				}
 			});
 	};

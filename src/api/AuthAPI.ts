@@ -31,6 +31,14 @@ export const AuthAPI = {
         })
         return response.data
     },
+    refreshAccessToken: async function (cancel = false) {
+        const response = await api.request({
+            url: `/users/refresh-token`,
+            method: "POST",
+            signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
+        })
+        return response.data
+    },
 }
 const cancelApiObject: CancelApiObject<ApiObject> = defineCancelApiObject(AuthAPI);
 
