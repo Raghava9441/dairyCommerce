@@ -38,7 +38,7 @@ interface ProductsResponseData {
     NextPage: number | null;
 }
 
-interface ProductsResponse {
+export interface ProductsResponse {
     StatusCode: number;
     Data: ProductsResponseData;
     Message: string;

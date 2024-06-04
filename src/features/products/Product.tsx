@@ -1,5 +1,4 @@
 import { Product } from './products.modal'
-
 interface Props {
     product: Product
 }

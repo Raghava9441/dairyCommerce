@@ -16,6 +16,7 @@ export const ProfileAPI = {
         const response = await api.request({
             url: `/ecommerce/profile`,
             method: "PATCH",
+            data: data,
             signal: cancel ? cancelApiObject[this.updateProfile.name].handleRequestCancellation().signal : undefined,
         })
 
@@ -25,6 +26,7 @@ export const ProfileAPI = {
         const response = await api.request({
             url: `/ecommerce/profile/my-orders?page=1&limit=10`,
             method: "PATCH",
+            data: data,
             signal: cancel ? cancelApiObject[this.getMyOrders.name].handleRequestCancellation().signal : undefined,
         })
 

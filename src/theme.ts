@@ -1,13 +1,14 @@
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { red, blue, green } from '@mui/material/colors';
 
-const theme = createTheme({
+const lightTheme = createTheme({
     palette: {
+        mode: 'light',
         primary: {
-            main: '#556cd6',
+            main: blue[500],
         },
         secondary: {
-            main: '#19857b',
+            main: green[500],
         },
         error: {
             main: red.A400,
@@ -15,4 +16,19 @@ const theme = createTheme({
     },
 });
 
-export default theme;
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: blue[200],
+        },
+        secondary: {
+            main: green[200],
+        },
+        error: {
+            main: red[200],
+        },
+    },
+});
+
+export { lightTheme, darkTheme };

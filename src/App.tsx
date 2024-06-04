@@ -3,8 +3,9 @@ import { routeTree } from './routeTree.gen'
 import { Spinner } from './components/Spinner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastContainer } from 'react-toastify'
-import { CssBaseline } from '@mui/material'
+import { Button } from '@mui/material'
 import { useAuthHook } from './hooks/useAuthHook'
+import { ThemeProviderWrapper, useThemeContext } from './components/ThemeProviderWrapper '
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,29 +35,42 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const ToggleButton: React.FC = () => {
+  const { toggleTheme } = useThemeContext();
+  return (
+    <Button variant="contained" color="primary" onClick={toggleTheme}>
+      Toggle Theme
+    </Button>
+  );
+}
+
 function App() {
   const isLogged = useAuthHook();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <CssBaseline />
-      <RouterProvider
-        router={router}
-        context={{
-          auth: isLogged,
-        }} />
-      <ToastContainer position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </QueryClientProvider >
+    <ThemeProviderWrapper>
+      <QueryClientProvider client={queryClient}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: 20 }}>
+          <ToggleButton />
+        </div>
+        <RouterProvider
+          router={router}
+          context={{
+            auth: isLogged,
+          }} />
+        <ToastContainer position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </QueryClientProvider >
+    </ThemeProviderWrapper>
   )
 }
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {  useState } from 'react'
-import {  UseProducts } from '../../api/productAPI'
+import { useState } from 'react'
+import { UseProducts } from '../../api/productAPI'
 import ProductList from '../../features/products/ProductList'
 import { Pagination, Stack, Typography } from '@mui/material'
 
@@ -37,7 +37,6 @@ function Products() {
     const productQuery = UseProducts(currentPage, 10)
 
     if (!productQuery.data) return null;
-    console.log(productQuery.data)
 
     return (
         <div>
