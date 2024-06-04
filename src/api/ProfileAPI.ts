@@ -12,7 +12,7 @@ export const ProfileAPI = {
 
         return response.data
     },
-    updateProfile: async function (data, cancel = false) {
+    updateProfile: async function (data: any, cancel = false) {
         const response = await api.request({
             url: `/ecommerce/profile`,
             method: "PATCH",
@@ -22,11 +22,10 @@ export const ProfileAPI = {
 
         return response.data
     },
-    getMyOrders: async function (data, cancel = false) {
+    getMyOrders: async function (page: number, limit: number, cancel = false) {
         const response = await api.request({
-            url: `/ecommerce/profile/my-orders?page=1&limit=10`,
+            url: `/ecommerce/profile/my-orders?page=${page}&limit=${limit}`,
             method: "PATCH",
-            data: data,
             signal: cancel ? cancelApiObject[this.getMyOrders.name].handleRequestCancellation().signal : undefined,
         })
 

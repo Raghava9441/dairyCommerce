@@ -39,6 +39,48 @@ export const AuthAPI = {
         })
         return response.data
     },
+    asignRole: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    resendEmailVerification: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    changeCurrentPassword: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    forgotPasswordRequest: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    resetForgottenPassword: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    updateAvatar: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
 }
 const cancelApiObject: CancelApiObject<ApiObject> = defineCancelApiObject(AuthAPI);
 

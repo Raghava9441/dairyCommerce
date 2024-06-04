@@ -20,6 +20,56 @@ export const ProductAPI = {
             throw error;
         }
     },
+    createproduct: async function (data: any, cancel = false) {
+        try {
+            const response = await api.request({
+                url: `/ecommerce/products`,
+                method: "POST",
+                data: data,
+                signal: cancel ? cancelApiObject[this.getProducts.name].handleRequestCancellation().signal : undefined,
+            });
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching products', error);
+            throw error;
+        }
+    },
+    getProductById: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    deleteProduct: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    updateProduct: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    getProductByCatogory: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    removeSubImage: async function () {
+        try {
+
+        } catch (error) {
+
+        }
+    },
 }
 
 const cancelApiObject: CancelApiObject<ApiObject> = defineCancelApiObject(ProductAPI);
