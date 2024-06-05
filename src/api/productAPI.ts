@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { api } from "./configs/axiosConfigs"
 import { defineCancelApiObject, CancelApiObject, ApiObject } from "./configs/axiosUtils" // Ensure ApiObject is exported
 import { ProductsResponse, mapToProductsResponse } from "../features/products/products.modal"
@@ -35,39 +35,69 @@ export const ProductAPI = {
             throw error;
         }
     },
-    getProductById: async function () {
+    getProductById: async function (id: string, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/ecommerce/products${id}`,
+                method: "GET",
+                signal: cancel ? cancelApiObject[this.getProductById.name].handleRequestCancellation().signal : undefined,
+            });
+            return response
         } catch (error) {
-
+            console.log("error:", error)
+            throw error;
         }
     },
-    deleteProduct: async function () {
+    deleteProduct: async function (id: string, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/ecommerce/products${id}`,
+                method: "DELETE",
+                signal: cancel ? cancelApiObject[this.deleteProduct.name].handleRequestCancellation().signal : undefined,
+            });
+            return response
         } catch (error) {
-
+            console.log("error:", error)
+            throw error;
         }
     },
-    updateProduct: async function () {
+    updateProduct: async function (id: string, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/ecommerce/products${id}`,
+                method: "PATCH",
+                signal: cancel ? cancelApiObject[this.updateProduct.name].handleRequestCancellation().signal : undefined,
+            });
+            return response
         } catch (error) {
-
+            console.log("error:", error)
+            throw error;
         }
     },
-    getProductByCatogory: async function () {
+    getProductByCatogory: async function (id: string, page: number, limit: number, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/ecommerce/products/category/${id}?page=${page}&limit=${limit}`,
+                method: "GET",
+                signal: cancel ? cancelApiObject[this.getProductByCatogory.name].handleRequestCancellation().signal : undefined,
+            });
+            return response
         } catch (error) {
-
+            console.log("error:", error)
+            throw error;
         }
     },
-    removeSubImage: async function () {
+    removeSubImage: async function (productId: string, subImageId: string, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/ecommerce/products/remove/subimage/${productId}/${subImageId}`,
+                method: "PATCH",
+                signal: cancel ? cancelApiObject[this.getProductByCatogory.name].handleRequestCancellation().signal : undefined,
+            });
+            return response
         } catch (error) {
-
+            console.log("error:", error)
+            throw error;
         }
     },
 }
