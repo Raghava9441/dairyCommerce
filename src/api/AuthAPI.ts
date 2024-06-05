@@ -5,80 +5,140 @@ import { defineCancelApiObject, CancelApiObject, ApiObject } from "./configs/axi
 
 export const AuthAPI = {
     RegisterUser: async function (userData: RegisterUser, cancel = false) {
-        const response = await api.request({
-            url: `/users/register`,
-            method: "POST",
-            data: userData,
-            signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
-        })
-        return response.data
+        try {
+            const response = await api.request({
+                url: `/users/register`,
+                method: "POST",
+                data: userData,
+                signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
+        } catch (error) {
+            console.log("error:", error)
+            throw error
+        }
     },
     Login: async function (userData: LoginUser, cancel = false) {
-        const response = await api.request({
-            url: `/users/login`,
-            method: "POST",
-            data: userData,
-            signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
-        })
-        return response.data
+        try {
+            const response = await api.request({
+                url: `/users/login`,
+                method: "POST",
+                data: userData,
+                signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
+        } catch (error) {
+            console.log("error:", error)
+            throw error
+        }
     },
     Logout: async function (userData: LoginUser, cancel = false) {
-        const response = await api.request({
-            url: `/users/logout`,
-            method: "POST",
-            data: userData,
-            signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
-        })
-        return response.data
+        try {
+            const response = await api.request({
+                url: `/users/logout`,
+                method: "POST",
+                data: userData,
+                signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
+        } catch (error) {
+            console.log("error:", error)
+            throw error
+        }
     },
     refreshAccessToken: async function (cancel = false) {
-        const response = await api.request({
-            url: `/users/refresh-token`,
-            method: "POST",
-            signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
-        })
-        return response.data
-    },
-    asignRole: async function () {
         try {
-
+            const response = await api.request({
+                url: `/users/refresh-token`,
+                method: "POST",
+                signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    resendEmailVerification: async function () {
+    asignRole: async function (id: string, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/users/assign-role/${id}`,
+                method: "POST",
+                signal: cancel ? cancelApiObject[this.asignRole.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    changeCurrentPassword: async function () {
+    resendEmailVerification: async function (cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/users/resend-email-verification`,
+                method: "POST",
+                signal: cancel ? cancelApiObject[this.resendEmailVerification.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    forgotPasswordRequest: async function () {
+    changeCurrentPassword: async function (data: any, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/users/change-password`,
+                method: "POST",
+                data: data,
+                signal: cancel ? cancelApiObject[this.changeCurrentPassword.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    resetForgottenPassword: async function () {
+    forgotPasswordRequest: async function (data: any, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/users/forgot-password`,
+                method: "POST",
+                data: data,
+                signal: cancel ? cancelApiObject[this.forgotPasswordRequest.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    updateAvatar: async function () {
+    resetForgottenPassword: async function (resetToken: string, data: any, cancel = false) {
         try {
-
+            const response = await api.request({
+                url: `/users/reset-password/${resetToken}`,
+                method: "POST",
+                data: data,
+                signal: cancel ? cancelApiObject[this.resetForgottenPassword.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
+        }
+    },
+    updateAvatar: async function (file: any, cancel = false) {
+        try {
+            const response = await api.request({
+                url: `/users/avatar`,
+                method: "POST",
+                data: file,
+                signal: cancel ? cancelApiObject[this.updateAvatar.name].handleRequestCancellation().signal : undefined,
+            })
+            return response.data
+        } catch (error) {
+            console.log("error:", error)
+            throw error
         }
     },
 }
