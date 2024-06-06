@@ -32,12 +32,11 @@ export const AuthAPI = {
             throw error
         }
     },
-    Logout: async function (userData: LoginUser, cancel = false) {
+    Logout: async function (cancel = false) {
         try {
             const response = await api.request({
                 url: `/users/logout`,
                 method: "POST",
-                data: userData,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
             })
             return response.data

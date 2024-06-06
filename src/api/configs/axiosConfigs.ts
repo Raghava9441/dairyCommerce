@@ -1,5 +1,6 @@
 import axios from "axios"
 import Cookies from "js-cookie"
+import { AuthAPI } from "../AuthAPI";
 
 export const api = axios.create({
   baseURL: 'http://localhost:8080/api/v1', // replace with your API base URL
@@ -50,6 +51,7 @@ api.interceptors.response.use(
             return api(originalRequest);
           })
           .catch((err) => {
+
             return Promise.reject(err);
           });
       }
@@ -60,9 +62,11 @@ api.interceptors.response.use(
       const refreshToken = Cookies.get('refreshToken');
       return new Promise(function (resolve, reject) {
         alert("token expiered")
-        api
-          .post('users/refresh-token', { token: refreshToken }) // replace with your refresh token endpoint
+        debugger
+        axios.post('http://localhost:8080/api/v1/users/refresh-token', { token: refreshToken }) // replace with your refresh token endpoint
           .then(({ data }) => {
+            alert("hey")
+            console.log("data:", data)
             Cookies.set('accessToken', data.accessToken);
             Cookies.set('refreshToken', data.refreshToken);
             api.defaults.headers.common['Authorization'] = 'Bearer ' + data.accessToken;
@@ -71,13 +75,15 @@ api.interceptors.response.use(
             resolve(api(originalRequest));
           })
           .catch((err) => {
+            alert("eeee")
             processQueue(err, null);
+            AuthAPI.Logout()
             reject(err);
           })
           .finally(() => {
             isRefreshing = false;
           });
-      });
+      })
     }
 
     return Promise.reject(error);

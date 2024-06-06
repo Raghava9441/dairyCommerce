@@ -2,40 +2,45 @@
 import { defineCancelApiObject, CancelApiObject, ApiObject } from "./configs/axiosUtils" // Ensure ApiObject is exported
 
 export const CategoryAPI = {
-    getAllCategories: async function () {
+    getAllCategories: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    createCategory: async function () {
+    createCategory: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    getCategoriesById: async function () {
+    getCategoriesById: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
 
     },
-    deleteCategory: async function () {
+    deleteCategory: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    updateCategory: async function () {
+    updateCategory: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
 }

@@ -2,67 +2,76 @@
 import { defineCancelApiObject, CancelApiObject, ApiObject } from "./configs/axiosUtils" // Ensure ApiObject is exported
 
 export const couponAPI = {
-    getAllCoupons: async function () {
+    getAllCoupons: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    createCoupon: async function () {
+    createCoupon: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    getAvailableCouponsForCustomer: async function () {
+    getAvailableCouponsForCustomer: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    getCouponById: async function () {
+    getCouponById: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    DeleteCoupon: async function () {
+    DeleteCoupon: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    updateCoupon: async function () {
+    updateCoupon: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    applyCouponCode: async function () {
+    applyCouponCode: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    removeCouponCode: async function () {
+    removeCouponCode: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
-    updateCouponActiveStatus: async function () {
+    updateCouponActiveStatus: async function (cancel = false) {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     }
 }

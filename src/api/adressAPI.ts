@@ -5,35 +5,40 @@ export const adressAPI = {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
     createAddress: async function () {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
     getAddressById: async function () {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
     deleteAddress: async function () {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
     updateAddress: async function () {
         try {
 
         } catch (error) {
-
+            console.log("error:", error)
+            throw error
         }
     },
 }
