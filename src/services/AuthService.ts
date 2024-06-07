@@ -1,6 +1,3 @@
-
 export const isTokenExpired = {
-    refreshAccessToken: function () {
-
-    }
-}
+    refreshAccessToken: function () {},
+};

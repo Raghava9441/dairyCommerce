@@ -1,34 +1,80 @@
 import { createTheme } from '@mui/material/styles';
-import { red, blue, green } from '@mui/material/colors';
 
 const lightTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: blue[500],
+            main: '#4352ff',
         },
         secondary: {
-            main: green[500],
+            main: '#4caf50',
         },
         error: {
-            main: red.A400,
+            main: '#ff4d4f',
         },
     },
+    components: {
+        MuiButtonBase: {
+            styleOverrides: {
+                root: {},
+            },
+        },
+        MuiDialog: {},
+        MuiDialogContent: {},
+        MuiDialogActions: {},
+        MuiDialogTitle: {},
+        MuiFormControl: {
+            styleOverrides: {
+                root: {},
+            },
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    // backgroundColor: "black"
+                },
+            },
+        },
+
+        MuiFormLabel: {},
+        MuiAccordion: {},
+        MuiAccordionActions: {},
+        MuiAccordionDetails: {},
+        MuiAccordionSummary: {},
+        MuiAppBar: {},
+        MuiAutocomplete: {},
+        MuiAvatar: {},
+        MuiButton: {
+            styleOverrides: {},
+        },
+        MuiCardActions: {},
+        MuiCardContent: {},
+        MuiCard: {},
+        MuiInput: {
+            styleOverrides: {
+                root: {},
+                input: {},
+            },
+        },
+    },
+    typography: {},
 });
 
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: blue[200],
+            main: '#4352ff',
         },
         secondary: {
-            main: green[200],
+            main: '#4caf50',
         },
         error: {
-            main: red[200],
+            main: '#ff4d4f',
         },
     },
+    components: {},
+    typography: {},
 });
 
 export { lightTheme, darkTheme };

@@ -1,8 +1,7 @@
-import { LocalStorage } from "../utils/localStorage";
+import { LocalStorage } from '../utils/localStorage';
 
 export const useAuthHook = () => {
-
-    const isLogged = () => LocalStorage.get("current-user") !== null;
+    const isLogged = () => LocalStorage.get('current-user') !== null;
 
     return { isLogged };
 };

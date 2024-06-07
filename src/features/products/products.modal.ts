@@ -46,28 +46,32 @@ export interface ProductsResponse {
 }
 
 export function mapToProductsResponse(apiResponse: any): ProductsResponse {
-    const products: Product[] = apiResponse.data.products.map((productData: any): Product => ({
-        _Id: productData._id,
-        Category: productData.category,
-        Description: productData.description,
-        MainImage: {
-            Url: productData.mainImage.url,
-            LocalPath: productData.mainImage.localPath,
-            _Id: productData.mainImage._id
-        },
-        Name: productData.name,
-        Owner: productData.owner,
-        Price: productData.price,
-        Stock: productData.stock,
-        SubImages: productData.subImages.map((subImageData: any): SubImage => ({
-            Url: subImageData.url,
-            LocalPath: subImageData.localPath,
-            _Id: subImageData._id
-        })),
-        __V: productData.__v,
-        CreatedAt: productData.createdAt,
-        UpdatedAt: productData.updatedAt
-    }));
+    const products: Product[] = apiResponse.data.products.map(
+        (productData: any): Product => ({
+            _Id: productData._id,
+            Category: productData.category,
+            Description: productData.description,
+            MainImage: {
+                Url: productData.mainImage.url,
+                LocalPath: productData.mainImage.localPath,
+                _Id: productData.mainImage._id,
+            },
+            Name: productData.name,
+            Owner: productData.owner,
+            Price: productData.price,
+            Stock: productData.stock,
+            SubImages: productData.subImages.map(
+                (subImageData: any): SubImage => ({
+                    Url: subImageData.url,
+                    LocalPath: subImageData.localPath,
+                    _Id: subImageData._id,
+                })
+            ),
+            __V: productData.__v,
+            CreatedAt: productData.createdAt,
+            UpdatedAt: productData.updatedAt,
+        })
+    );
 
     return {
         StatusCode: apiResponse.statusCode,
@@ -81,9 +85,9 @@ export function mapToProductsResponse(apiResponse: any): ProductsResponse {
             HasPrevPage: apiResponse.data.hasPrevPage,
             HasNextPage: apiResponse.data.hasNextPage,
             PrevPage: apiResponse.data.prevPage,
-            NextPage: apiResponse.data.nextPage
+            NextPage: apiResponse.data.nextPage,
         },
         Message: apiResponse.message,
-        Success: apiResponse.success
+        Success: apiResponse.success,
     };
 }

@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+# My Vite + React + TypeScript Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is built with Vite, React, TypeScript, Material-UI, TanStack Query, TanStack Router, and Vitest for testing.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Scripts](#scripts)
+- [Configuration](#configuration)
+- [Testing](#testing)
+- [Linting and Formatting](#linting-and-formatting)
+- [References](#references)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with this project, clone the repository and install the dependencies:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+git clone https://github.com/Raghava9441/dairyCommerce.git
+cd dairyCommerce
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## usage
+
+
+
+## project-structure
+
+├───public
+└───src
+    ├───api
+    │   └───configs
+    ├───assets
+    ├───components
+    ├───features
+    │   ├───authentication
+    │   ├───products
+    │   └───profile
+    ├───hooks
+    ├───routes
+    │   ├───_authenticated
+    │   └───_unAuthenticated
+    ├───services
+    └───utils
+
+ ## scripts
+
+
+
+ ## configuration
+
+
+ ## testing
+
+
+
+
+ ## linting-and-formatting
+
+
+
+
+ ## references
+
+followed this tutorial to setup eslint and testing vitest and @testing-library/react
+https://medium.com/@nedopaka/setup-a-react-vite-project-with-prettier-vitest-2024-12e291669b4b

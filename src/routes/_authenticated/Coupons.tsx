@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_authenticated/Coupons')({
-  component: () => <div>Hello /_authenticated/Coupons!</div>
-})
+    component: () => <div>Hello /_authenticated/Coupons!</div>,
+});

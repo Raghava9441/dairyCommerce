@@ -25,5 +25,5 @@ export const MapProfile = (x: any): UserProfile => {
         Avatar: x.avatar,
         CreatedAt: x.createdAt,
         UpdatedAt: x.updatedAt,
-    }
-}
+    };
+};

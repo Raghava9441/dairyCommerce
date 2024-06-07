@@ -19,7 +19,7 @@ const CustomPagination: React.FC<PaginationProps> = ({ totalPages, currentPage, 
             handleNextPage();
         }
     };
-    console.log(currentPage)
+    console.log(currentPage);
 
     return (
         <Stack spacing={2} direction="row" justifyContent="center" alignItems="center">
@@ -34,7 +34,6 @@ const CustomPagination: React.FC<PaginationProps> = ({ totalPages, currentPage, 
             /> */}
 
             <Pagination count={totalPages} variant="outlined" color="primary" />
-
         </Stack>
     );
 };

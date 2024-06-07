@@ -50,7 +50,7 @@ export function MapToLoginResponse(apiResponse: any): LoginResponse {
                 avatar: {
                     url: apiResponse.data.user.avatar.url,
                     localPath: apiResponse.data.user.avatar.localPath,
-                    _id: apiResponse.data.user.avatar._id
+                    _id: apiResponse.data.user.avatar._id,
                 },
                 username: apiResponse.data.user.username,
                 email: apiResponse.data.user.email,
@@ -59,13 +59,13 @@ export function MapToLoginResponse(apiResponse: any): LoginResponse {
                 isEmailVerified: apiResponse.data.user.isEmailVerified,
                 createdAt: apiResponse.data.user.createdAt,
                 updatedAt: apiResponse.data.user.updatedAt,
-                __v: apiResponse.data.user.__v
+                __v: apiResponse.data.user.__v,
             },
             accessToken: apiResponse.data?.accessToken,
-            refreshToken: apiResponse.data?.refreshToken
+            refreshToken: apiResponse.data?.refreshToken,
         },
         message: apiResponse.message,
-        success: apiResponse.success
+        success: apiResponse.success,
     };
 }
 
@@ -95,5 +95,3 @@ export function MapToLoginResponse(apiResponse: any): LoginResponse {
 //     "message": "User logged in successfully",
 //     "success": true
 // };
-
-

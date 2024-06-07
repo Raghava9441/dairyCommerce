@@ -1,4 +1,4 @@
-export const isBrowser = typeof window !== "undefined";
+export const isBrowser = typeof window !== 'undefined';
 
 export class LocalStorage {
     // Get a value from local storage by key
