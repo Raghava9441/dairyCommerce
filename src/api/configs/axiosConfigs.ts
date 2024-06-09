@@ -60,7 +60,7 @@ api.interceptors.response.use(
 
             const refreshToken = Cookies.get('refreshToken');
             return new Promise(function (resolve, reject) {
-                alert('token expiered');
+                // alert('token expiered');
                 debugger;
                 axios
                     .post('http://localhost:8080/api/v1/users/refresh-token', {
@@ -77,7 +77,7 @@ api.interceptors.response.use(
                         resolve(api(originalRequest));
                     })
                     .catch((err) => {
-                        alert('eeee');
+                        // alert('eeee');
                         processQueue(err, null);
                         AuthAPI.Logout();
                         reject(err);
