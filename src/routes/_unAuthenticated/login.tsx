@@ -74,6 +74,18 @@ function Login() {
                             label="Username"
                             {...register('username', {
                                 required: 'Username is required',
+                                minLength: {
+                                    value: 3,
+                                    message: 'Username must be at least 3 characters',
+                                },
+                                maxLength: {
+                                    value: 20,
+                                    message: 'Username must be at most 20 characters',
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                                    message: 'email must be valid',
+                                },
                             })}
                             error={!!errors.username}
                             helperText={errors.username?.message as ReactNode}
@@ -83,6 +95,18 @@ function Login() {
                             type="password"
                             {...register('password', {
                                 required: 'Password is required',
+                                minLength: {
+                                    value: 6,
+                                    message: 'Password must be at least 6 characters',
+                                },
+                                maxLength: {
+                                    value: 20,
+                                    message: 'Password must be at most 20 characters',
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: 'Password must contain only letters and numbers',
+                                },
                             })}
                             error={!!errors.password}
                             helperText={errors.password?.message as ReactNode}
