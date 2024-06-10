@@ -31,6 +31,7 @@ function Login() {
     } = useForm();
 
     const onSubmit = (data: any) => {
+        console.log("data:", data)
         schema.parse(data);
         AuthAPI.Login(data, true)
             .then((result) => {

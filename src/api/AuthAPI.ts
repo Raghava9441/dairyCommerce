@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { LoginUser, RegisterUser } from '../features/authentication/authentication.modal';
 import { api } from './configs/axiosConfigs';
 import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
@@ -19,8 +20,8 @@ export const AuthAPI = {
     },
     Login: async function (userData: LoginUser, cancel = false) {
         try {
-            const response = await api.request({
-                url: `/users/login`,
+            const response = await axios.request({
+                url: `http://localhost:8080/api/v1/users/login`,
                 method: 'POST',
                 data: userData,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
