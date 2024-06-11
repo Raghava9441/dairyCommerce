@@ -1,14 +1,16 @@
 import axios from 'axios';
 import { LoginUser, RegisterUser } from '../features/authentication/authentication.modal';
-import { api } from './configs/axiosConfigs';
-import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
+import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils';
+// Ensure ApiObject is exported
+const base_url = 'http://localhost:8080/api/v1'
 
 export const AuthAPI = {
     RegisterUser: async function (userData: RegisterUser, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/register`,
                 method: 'POST',
+                withCredentials: true,
                 data: userData,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
             });
@@ -21,8 +23,9 @@ export const AuthAPI = {
     Login: async function (userData: LoginUser, cancel = false) {
         try {
             const response = await axios.request({
-                url: `http://localhost:8080/api/v1/users/login`,
+                url: `${base_url}/users/login`,
                 method: 'POST',
+                withCredentials: true,
                 data: userData,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
             });
@@ -34,9 +37,10 @@ export const AuthAPI = {
     },
     Logout: async function (cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/logout`,
                 method: 'POST',
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -47,22 +51,25 @@ export const AuthAPI = {
     },
     refreshAccessToken: async function (cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/refresh-token`,
                 method: 'POST',
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.RegisterUser.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
         } catch (error) {
             console.log('error:', error);
+            this.Logout();
             throw error;
         }
     },
     asignRole: async function (id: string, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/assign-role/${id}`,
                 method: 'POST',
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.asignRole.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -73,9 +80,10 @@ export const AuthAPI = {
     },
     resendEmailVerification: async function (cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/resend-email-verification`,
                 method: 'POST',
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.resendEmailVerification.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -86,10 +94,11 @@ export const AuthAPI = {
     },
     changeCurrentPassword: async function (data: any, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/change-password`,
                 method: 'POST',
                 data: data,
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.changeCurrentPassword.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -100,10 +109,11 @@ export const AuthAPI = {
     },
     forgotPasswordRequest: async function (data: any, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/forgot-password`,
                 method: 'POST',
                 data: data,
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.forgotPasswordRequest.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -114,10 +124,11 @@ export const AuthAPI = {
     },
     resetForgottenPassword: async function (resetToken: string, data: any, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/reset-password/${resetToken}`,
                 method: 'POST',
                 data: data,
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.resetForgottenPassword.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;
@@ -128,10 +139,11 @@ export const AuthAPI = {
     },
     updateAvatar: async function (file: any, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/users/avatar`,
                 method: 'POST',
                 data: file,
+                withCredentials: true,
                 signal: cancel ? cancelApiObject[this.updateAvatar.name].handleRequestCancellation().signal : undefined,
             });
             return response.data;

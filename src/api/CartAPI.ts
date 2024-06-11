@@ -1,10 +1,10 @@
-import { api } from './configs/axiosConfigs';
+import axios from 'axios';
 import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
 
 export const CartAPI = {
     getUserCart: async function (cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/ecommerce/cart`,
                 method: 'GET',
                 signal: cancel ? cancelApiObject[this.getUserCart.name].handleRequestCancellation().signal : undefined,
@@ -17,7 +17,7 @@ export const CartAPI = {
     },
     addItemOrUpdateQty: async function (id: string, data: any, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/ecommerce/cart/item/${id}`,
                 method: 'POST',
                 data: data,
@@ -31,7 +31,7 @@ export const CartAPI = {
     },
     removeItemFromCart: async function (id: string, cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/ecommerce/cart/item/${id}`,
                 method: 'DELETE',
                 signal: cancel ? cancelApiObject[this.removeItemFromCart.name].handleRequestCancellation().signal : undefined,
@@ -44,7 +44,7 @@ export const CartAPI = {
     },
     clearCart: async function (cancel = false) {
         try {
-            const response = await api.request({
+            const response = await axios.request({
                 url: `/ecommerce/cart/clear`,
                 method: 'DELETE',
                 signal: cancel ? cancelApiObject[this.clearCart.name].handleRequestCancellation().signal : undefined,

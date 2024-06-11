@@ -35,6 +35,7 @@ function Login() {
         schema.parse(data);
         AuthAPI.Login(data, true)
             .then((result) => {
+                console.log("result:", result)
                 LocalStorage.set('current-user', result.data);
                 reset();
                 // navigate({ to: "/profile" })
@@ -71,6 +72,7 @@ function Login() {
                         }}
                     >
                         <TextField
+                            defaultValue={"raghava"}
                             label="Username"
                             {...register('username', {
                                 required: 'Username is required',
@@ -82,15 +84,12 @@ function Login() {
                                     value: 20,
                                     message: 'Username must be at most 20 characters',
                                 },
-                                pattern: {
-                                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                                    message: 'email must be valid',
-                                },
                             })}
                             error={!!errors.username}
                             helperText={errors.username?.message as ReactNode}
                         />
                         <TextField
+                            defaultValue={"raghava"}
                             label="Password"
                             type="password"
                             {...register('password', {
