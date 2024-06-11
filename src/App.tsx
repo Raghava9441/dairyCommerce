@@ -2,14 +2,15 @@ import { ErrorComponent, RouterProvider, createRouter } from '@tanstack/react-ro
 import { routeTree } from './routeTree.gen';
 import { Spinner } from './components/Spinner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ToastContainer } from 'react-toastify';
 import { Button } from '@mui/material';
 import { useAuthHook } from './hooks/useAuthHook';
 import { ThemeProviderWrapper, useThemeContext } from './components/ThemeProviderWrapper ';
+import { Toaster } from 'react-hot-toast'
 
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
+            staleTime: 120000,
             retry: false,
         },
     },
@@ -64,19 +65,27 @@ function App() {
                         auth: isLogged,
                     }}
                 />
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
             </QueryClientProvider>
+            <Toaster
+                position="top-center"
+                gutter={12}
+                containerStyle={{ margin: "8px" }}
+                toastOptions={{
+                    success: {
+                        duration: 3000,
+                    },
+                    error: {
+                        duration: 5000,
+                    },
+                    style: {
+                        fontSize: "16px",
+                        maxWidth: "500px",
+                        padding: "16px 24px",
+                        backgroundColor: "var(--color-grey-0)",
+                        color: "var(--color-grey-700)",
+                    },
+                }}
+            />
         </ThemeProviderWrapper>
     );
 }

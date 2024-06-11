@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getAccessTokenFromCookies, getRefreshTokenFromCookies, setTokensInCookies } from '../../utils/tokenUtils';
 
 import { AxiosError } from "axios";
 

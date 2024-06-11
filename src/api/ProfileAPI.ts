@@ -5,7 +5,7 @@ const base_url = 'http://localhost:8080/api/v1'
 export const ProfileAPI = {
     getProfile: async function (cancel = false) {
         const response = await axiosInstance.request({
-            url: `${base_url}/ecommerce/profile`,
+            url: `/ecommerce/profile`,
             method: 'GET',
             signal: cancel ? cancelApiObject[this.getProfile.name].handleRequestCancellation().signal : undefined,
         });

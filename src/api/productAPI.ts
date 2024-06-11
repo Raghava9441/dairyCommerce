@@ -2,11 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
 import { ProductsResponse, mapToProductsResponse } from '../features/products/products.modal';
 import axios, { AxiosError } from 'axios';
+import { axiosInstance } from './configs/axiosConfigs';
 
 export const ProductAPI = {
     getProducts: async function (page: number, limit: number, cancel = false): Promise<ProductsResponse> {
         try {
-            const response = await axios.request<ProductsResponse>({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products?page=${page}&limit=${limit}`,
                 method: 'GET',
                 signal: cancel ? cancelApiObject[this.getProducts.name].handleRequestCancellation().signal : undefined,
@@ -21,7 +22,7 @@ export const ProductAPI = {
     },
     createproduct: async function (data: any, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products`,
                 method: 'POST',
                 data: data,
@@ -36,7 +37,7 @@ export const ProductAPI = {
     },
     getProductById: async function (id: string, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products${id}`,
                 method: 'GET',
                 signal: cancel ? cancelApiObject[this.getProductById.name].handleRequestCancellation().signal : undefined,
@@ -49,7 +50,7 @@ export const ProductAPI = {
     },
     deleteProduct: async function (id: string, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products${id}`,
                 method: 'DELETE',
                 signal: cancel ? cancelApiObject[this.deleteProduct.name].handleRequestCancellation().signal : undefined,
@@ -62,7 +63,7 @@ export const ProductAPI = {
     },
     updateProduct: async function (id: string, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products${id}`,
                 method: 'PATCH',
                 signal: cancel ? cancelApiObject[this.updateProduct.name].handleRequestCancellation().signal : undefined,
@@ -75,7 +76,7 @@ export const ProductAPI = {
     },
     getProductByCatogory: async function (id: string, page: number, limit: number, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products/category/${id}?page=${page}&limit=${limit}`,
                 method: 'GET',
                 signal: cancel ? cancelApiObject[this.getProductByCatogory.name].handleRequestCancellation().signal : undefined,
@@ -88,7 +89,7 @@ export const ProductAPI = {
     },
     removeSubImage: async function (productId: string, subImageId: string, cancel = false) {
         try {
-            const response = await axios.request({
+            const response = await axiosInstance.request({
                 url: `/ecommerce/products/remove/subimage/${productId}/${subImageId}`,
                 method: 'PATCH',
                 signal: cancel ? cancelApiObject[this.getProductByCatogory.name].handleRequestCancellation().signal : undefined,

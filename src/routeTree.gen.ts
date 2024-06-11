@@ -7,12 +7,12 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as UnAuthenticatedImport } from './routes/_unAuthenticated'
 import { Route as AuthenticatedImport } from './routes/_authenticated'
+import { Route as ProductsImport } from './routes/Products'
 import { Route as UnAuthenticatedRegisterImport } from './routes/_unAuthenticated/register'
 import { Route as UnAuthenticatedLoginImport } from './routes/_unAuthenticated/login'
 import { Route as AuthenticatedProfileImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedOrdersImport } from './routes/_authenticated/orders'
 import { Route as AuthenticatedCartImport } from './routes/_authenticated/cart'
-import { Route as AuthenticatedProductsImport } from './routes/_authenticated/Products'
 import { Route as AuthenticatedCouponsImport } from './routes/_authenticated/Coupons'
 import { Route as AuthenticatedCategoriesImport } from './routes/_authenticated/Categories'
 import { Route as AuthenticatedAdressesImport } from './routes/_authenticated/Adresses'
@@ -30,6 +30,11 @@ const UnAuthenticatedRoute = UnAuthenticatedImport.update({
 
 const AuthenticatedRoute = AuthenticatedImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProductsRoute = ProductsImport.update({
+  path: '/Products',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -63,11 +68,6 @@ const AuthenticatedCartRoute = AuthenticatedCartImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthenticatedProductsRoute = AuthenticatedProductsImport.update({
-  path: '/Products',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
-
 const AuthenticatedCouponsRoute = AuthenticatedCouponsImport.update({
   path: '/Coupons',
   getParentRoute: () => AuthenticatedRoute,
@@ -91,6 +91,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/Products': {
+      preLoaderRoute: typeof ProductsImport
+      parentRoute: typeof rootRoute
+    }
     '/_authenticated': {
       preLoaderRoute: typeof AuthenticatedImport
       parentRoute: typeof rootRoute
@@ -109,10 +113,6 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/Coupons': {
       preLoaderRoute: typeof AuthenticatedCouponsImport
-      parentRoute: typeof AuthenticatedImport
-    }
-    '/_authenticated/Products': {
-      preLoaderRoute: typeof AuthenticatedProductsImport
       parentRoute: typeof AuthenticatedImport
     }
     '/_authenticated/cart': {
@@ -142,11 +142,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  ProductsRoute,
   AuthenticatedRoute.addChildren([
     AuthenticatedAdressesRoute,
     AuthenticatedCategoriesRoute,
     AuthenticatedCouponsRoute,
-    AuthenticatedProductsRoute,
     AuthenticatedCartRoute,
     AuthenticatedOrdersRoute,
     AuthenticatedProfileRoute,
