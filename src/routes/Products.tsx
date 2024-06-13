@@ -1,6 +1,6 @@
 import { UseProducts } from "@/api/productAPI";
 import ProductList from "@/features/products/ProductList";
-import { Pagination, Stack, Typography } from "@mui/material";
+import { Button, Pagination, Stack, Typography } from "@mui/material";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -58,3 +58,4 @@ function Products() {
         </div>
     );
 }
+export default Products;

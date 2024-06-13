@@ -2,6 +2,7 @@ import axios from 'axios';
 import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
 import { axiosInstance } from './configs/axiosConfigs';
 const base_url = 'http://localhost:8080/api/v1'
+
 export const ProfileAPI = {
     getProfile: async function (cancel = false) {
         const response = await axiosInstance.request({

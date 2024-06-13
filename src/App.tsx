@@ -36,14 +36,7 @@ declare module '@tanstack/react-router' {
     }
 }
 
-const ToggleButton: React.FC = () => {
-    const { toggleTheme } = useThemeContext();
-    return (
-        <Button variant="contained" color="secondary" onClick={toggleTheme} size="small">
-            Theme
-        </Button>
-    );
-};
+
 
 function App() {
     const isLogged = useAuthHook();
@@ -51,14 +44,7 @@ function App() {
     return (
         <ThemeProviderWrapper>
             <QueryClientProvider client={queryClient}>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                    }}
-                >
-                    <ToggleButton />
-                </div>
+                
                 <RouterProvider
                     router={router}
                     context={{

@@ -6,8 +6,14 @@ interface Props {
     products: ProductModal[];
 }
 
-function ProductList({ products }: Props) {
-    return products.map((product) => <Product product={product} />);
-}
+const ProductList: React.FC<Props> = React.memo(({ products }) => {
+    return (
+        <>
+            {products.map((product) => (
+                <Product key={product._Id} product={product} />
+            ))}
+        </>
+    );
+});
 
 export default ProductList;

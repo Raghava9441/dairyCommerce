@@ -16,7 +16,7 @@ function Profile() {
 
     useEffect(() => {
         setLoading(true);
-        ProfileAPI.getProfile()
+        ProfileAPI.getProfile(true)
             .then((result) => {
                 setProfile(MapProfile(result.data));
                 setLoading(false);
@@ -50,7 +50,8 @@ function Profile() {
                     )}
                 </div>
             )}
-            <Button onClick={handleLogOut}>LogOut</Button>
+            <Button onClick={handleLogOut} color='error' variant='contained'>LogOut</Button>
+            <Button onClick={() => navigate({ to: '/' })} color='error' variant='contained'>products</Button>
         </div>
     );
 }

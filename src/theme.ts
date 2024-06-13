@@ -56,6 +56,25 @@ const lightTheme = createTheme({
                 input: {},
             },
         },
+        MuiSelect: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "transparent",
+                    border: "none",
+                    outline: "none",
+                    '&:hover': {
+                        backgroundColor: 'transparent',
+
+                    },
+                    '&:active': {
+                        backgroundColor: 'transparent',
+                    },
+                    '& fieldset': {
+                        borderBottom: 'none', 
+                    },
+                },
+            },
+        },
     },
     typography: {},
 });

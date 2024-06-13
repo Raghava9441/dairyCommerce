@@ -36,6 +36,15 @@
       "features/*": [
         "src/features/*"
       ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "routes/*": [
+        "src/routes/*"
+      ],
+      "icons/*": [
+        "src/icons/*"
+      ],
       "public/*": [
         "public/*"
       ]

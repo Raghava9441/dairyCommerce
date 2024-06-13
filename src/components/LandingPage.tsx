@@ -1,15 +1,15 @@
 import HeroSection from '@/features/products/HeroSection';
 import Navbar from './shared/Navbar';
 import SubNav from './shared/SubNav';
+import Products from '@/routes/Products';
 
-type Props = {};
-
-const LandingPage = (props: Props) => {
+const LandingPage = () => {
     return (
         <>
             <Navbar />
             <SubNav />
             <HeroSection />
+            <Products />
         </>
     );
 };
