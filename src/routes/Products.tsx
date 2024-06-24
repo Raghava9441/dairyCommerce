@@ -1,6 +1,6 @@
 import { UseProducts } from "@/api/productAPI";
 import ProductList from "@/features/products/ProductList";
-import { Button, Pagination, Stack, Typography } from "@mui/material";
+import { Box, Button, Pagination, Stack, Typography } from "@mui/material";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -49,13 +49,13 @@ function Products() {
     };
 
     return (
-        <div>
+        <Box sx={{ marginTop: "10px", backgroundColor: "#E5F1FF" }}>
             <Typography>Products</Typography>
             {productQuery.isLoading ? <div>Loading...</div> : <ProductList products={productQuery.data.Data.Products} />}
             <Stack spacing={2} direction="row" justifyContent="center" alignItems="center">
                 <Pagination count={productQuery.data.Data.TotalPages} page={currentPage} variant="outlined" color="primary" onChange={handlePageChange} />
             </Stack>
-        </div>
+        </Box>
     );
 }
 export default Products;

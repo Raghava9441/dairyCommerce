@@ -1,3 +1,5 @@
+import { ApiResponse } from "@/models/index.model";
+
 interface MainImage {
     Url: string;
     LocalPath: string;
@@ -45,7 +47,8 @@ export interface ProductsResponse {
     Success: boolean;
 }
 
-export function mapToProductsResponse(apiResponse: any): ProductsResponse {
+
+export function mapToProductsResponse(apiResponse: any): ApiResponse<ProductsResponseData> {
     const products: Product[] = apiResponse.data.products.map(
         (productData: any): Product => ({
             _Id: productData._id,

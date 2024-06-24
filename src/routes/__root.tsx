@@ -11,7 +11,7 @@ type RouterContext = {
 
 export const Route = createRootRouteWithContext<RouterContext>()({
     component: () => (
-        <Box sx={{ margin: "10px 16px" }}>
+        <Box sx={{ marginTop: "10px" }}>
             <Outlet />
             <TanStackRouterDevtools />
         </Box>

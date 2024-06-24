@@ -10,6 +10,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 import { useNavigate } from "@tanstack/react-router";
 import ProductSearch from "./ProductSearch";
+import useIsMobile from "@/hooks/useIsMobile";
 // import { ReactComponent as ReactLogo } from '../../icons/logo.svg';
 
 type Props = {};
@@ -26,8 +27,9 @@ const ToggleTheme: React.FC = () => {
 };
 
 const Navbar = (props: Props) => {
-
+    const isMobile = useIsMobile()
     const navigate = useNavigate();
+
     const handleSearch = (searchTerm: string, category: string) => {
         // Implement your search logic here
         console.log('Search term:', searchTerm);
@@ -36,24 +38,35 @@ const Navbar = (props: Props) => {
     };
     return (
         <>
-            <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", padding: "5px 4rem " }}>
                 <Box>
                     <Logo style={{ cursor: "pointer" }} />
                 </Box>
                 <Box>
-
-                    <ProductSearch onSearch={(searchTerm, category) => handleSearch(searchTerm, category)} />
-
+                    {
+                        !isMobile && <ProductSearch onSearch={(searchTerm, category) => handleSearch(searchTerm, category)} />
+                    }
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
-                    <Profile style={{ cursor: "pointer" }} onClick={() => navigate({ to: "/profile" })} />
-                    <Message style={{ cursor: "pointer" }} />
-                    <Orders style={{ cursor: "pointer" }} />
-                    <Cart style={{ cursor: "pointer" }} />
+                    {
+                        isMobile ?
+                            <>
+                                <Cart style={{ cursor: "pointer" }} />
+                                <Profile style={{ cursor: "pointer" }} onClick={() => navigate({ to: "/profile" })} />
+                            </> :
+                            <>
+                                <Profile style={{ cursor: "pointer" }} onClick={() => navigate({ to: "/profile" })} />
+                                <Message style={{ cursor: "pointer" }} />
+                                <Orders style={{ cursor: "pointer" }} />
+                                <Cart style={{ cursor: "pointer" }} />
+                            </>
+                    }
                     <ToggleTheme />
                 </Box>
             </Box>
-            <Divider />
+            {
+                !isMobile && <Divider />
+            }
         </>
     );
 };
