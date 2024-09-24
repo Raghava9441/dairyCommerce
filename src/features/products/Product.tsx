@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { Product } from './products.modal';
 
 interface Props {
@@ -6,10 +7,10 @@ interface Props {
 
 function Product({ product }: Props) {
     return (
-        <div key={product._Id}>
+        <Box key={product._Id}>
             <h1>{product.Name}</h1>
             <p>{product.Description}</p>
-        </div>
+        </Box>
     );
 }
 

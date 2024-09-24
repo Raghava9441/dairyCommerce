@@ -1,23 +1,31 @@
-import { CategoryAPI } from "@/api/CategoryAPI"
-import { ProductAPI } from "@/api/productAPI"
-import { useEffect } from "react"
+import { UseCategorys } from "@/api/CategoryAPI"
+import { Box, Typography } from "@mui/material";
+import { useState } from "react"
+import ProductType from "./ProductType";
 
 type Props = {}
 
 function ProductTypes({ }: Props) {
+    const [currentPage, setcurrentPage] = useState(1);
 
-    useEffect(() => {
-        CategoryAPI.getAllCategories(1, 10, true).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        }).finally(() => { })
+    const ProductTypes = UseCategorys(currentPage, 10)
 
-        return () => { }
-    }, [])
+    if (ProductTypes.isLoading) return <div>Loading...</div>
+
+    if (ProductTypes.error)
+        return <div>somthing went wrong</div>
+
+    if (!ProductTypes.data) return null;
+
+    if (ProductTypes.data.Data.Categories?.length === 0) {
+        return <div>No Products</div>
+    }
+
 
     return (
-        <div>ProductTypes</div>
+        <Box sx={{ marginTop: "10px", maxHeight: "370px", overflow: "scroll" }}>
+            <ProductType Categories={ProductTypes.data.Data.Categories} />
+        </Box>
     )
 }
 

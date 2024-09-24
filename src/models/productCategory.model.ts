@@ -23,10 +23,11 @@ export interface productCategoryData {
 }
 
 export function mapToProductCategoryResponse(apiResponse: any): ApiResponse<productCategoryData> {
+    console.log("apiResponse:", apiResponse)
     const productCategoryData: productCategoryData = {
-        Categories: apiResponse.data.Categories.map((categoryData: any): ProductCategory => ({
-            Id: categoryData.Id,
-            Name: categoryData.Name,
+        Categories: apiResponse.data.categories.map((categoryData: any): ProductCategory => ({
+            Id: categoryData._id,
+            Name: categoryData.name,
             owner: categoryData.owner,
             __v: categoryData.__v,
             createdAt: categoryData.createdAt,
@@ -43,7 +44,7 @@ export function mapToProductCategoryResponse(apiResponse: any): ApiResponse<prod
         NextPage: apiResponse.data.nextPage
     }
     return {
-        StatusCode: apiResponse.status,
+        StatusCode: apiResponse.statusCode,
         Data: productCategoryData,
         Message: apiResponse.message,
         Success: apiResponse.data

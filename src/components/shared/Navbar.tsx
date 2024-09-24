@@ -57,7 +57,7 @@ const Navbar = (props: Props) => {
                             <>
                                 <Profile style={{ cursor: "pointer" }} onClick={() => navigate({ to: "/profile" })} />
                                 <Message style={{ cursor: "pointer" }} />
-                                <Orders style={{ cursor: "pointer" }} />
+                                <Orders style={{ cursor: "pointer" }} onClick={() => navigate({ to: "/orders" })} />
                                 <Cart style={{ cursor: "pointer" }} />
                             </>
                     }

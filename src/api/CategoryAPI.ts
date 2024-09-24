@@ -1,6 +1,9 @@
-import { mapToProductCategoryResponse } from '@/models/productCategory.model';
+import { ProductCategory, mapToProductCategoryResponse, productCategoryData } from '@/models/productCategory.model';
 import { axiosInstance } from './configs/axiosConfigs';
 import { defineCancelApiObject, CancelApiObject, ApiObject } from './configs/axiosUtils'; // Ensure ApiObject is exported
+import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { ApiResponse } from '@/models/index.model';
 
 export const CategoryAPI = {
     getAllCategories: async function (page: number, limit: number, cancel = false) {
@@ -11,9 +14,11 @@ export const CategoryAPI = {
                 withCredentials: true,
                 signal: cancel ? cancelApiObject[this.getAllCategories.name].handleRequestCancellation().signal : undefined,
             });
-            if (response.data.StatusCode === 200) {
+            if (response.data.statusCode === 200) {
                 const mappedResponse = mapToProductCategoryResponse(response.data);
                 return mappedResponse;
+            } else {
+                throw new Error('Unexpected response status');
             }
         } catch (error) {
             console.log('error:', error);
@@ -51,3 +56,11 @@ export const CategoryAPI = {
 };
 
 const cancelApiObject: CancelApiObject<ApiObject> = defineCancelApiObject(CategoryAPI);
+
+
+export const UseCategorys = (page: number, limit: number) => {
+    return useQuery<ApiResponse<productCategoryData>, AxiosError>({
+        queryKey: ['products', page, limit],
+        queryFn: () => CategoryAPI.getAllCategories(page, limit),
+    });
+};

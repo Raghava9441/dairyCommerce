@@ -9,7 +9,7 @@ interface Props {
 const ProductList: React.FC<Props> = React.memo(({ products }) => {
     return (
         <>
-            {products.map((product) => (
+            {products?.map((product) => (
                 <Product key={product._Id} product={product} />
             ))}
         </>
